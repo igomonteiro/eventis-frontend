@@ -1,0 +1,76 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+form input {
+  height: 50px;
+  background: #FFF;
+  border: 1px solid #B2B2B2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin: 0 0 10px;
+  padding: 0 15px;
+}
+
+form span {
+  color: var(--color-text-error-validation);
+  align-self: flex-start;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+form button {
+  height: 50px;
+  border-radius: 7px;
+  border: 0;
+  font-size: 16px;
+  color: #FFF;
+  background: var(--color-button);
+  margin: 5px 0 0;
+  transition: filter 0.2s;
+}
+
+form button:hover {
+  filter: brightness(90%);
+}
+
+form h1 {
+  color: var(--color-main-text);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form a {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--color-main-text);
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+form a svg {
+  margin-right: 8px;
+}
+
+form a:hover {
+  opacity: 0.8;
+}
