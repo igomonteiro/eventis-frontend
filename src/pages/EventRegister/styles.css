@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 360px;
+    max-width: 500px;
     text-align: center;
   }
 
@@ -26,8 +26,8 @@
     border: 1px solid #B2B2B2;
     box-sizing: border-box;
     border-radius: 7px;
-    margin: 0 0 10px;
-    padding: 0 15px;
+    margin: 0 0 15px;
+    padding: 0 18px;
   }
   
   form button {
@@ -51,9 +51,22 @@
     margin-bottom: 10px;
   }
   
-  .date{ 
-    display:flex; 
-    flex-direction: row
+  .date label {
+    display: flex;
+    flex-direction: row;
+    size: 10;    
+  }
+  .date input {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 250px;
+    background: #FFF;
+    border: 1px solid #B2B2B2;
+    box-sizing: border-box;
+    border-radius: 7px;
+    margin: 0 0 15px;
+    padding: 0 18px;
   }
   
   /*Css Menu*/

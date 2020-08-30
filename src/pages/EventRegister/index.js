@@ -30,30 +30,25 @@ export default function Home() {
       </div>
 
       <div className="content-event-register">
-
         <Form>
-              <h1>Cadastre seu evento</h1>
+          <h1>Cadastre seu evento</h1>
 
-              <Input name="title" placeholder="Titulo do Evento"/>
-              <Input name="location" placeholder="Endereço"/>
+          <Input name="title" placeholder="Titulo do Evento"/>
+          <Input name="location" placeholder="Endereço"/>    
+          <div className="date">
+            <label for="date"> Data do evento </label>
+            <Input name="date" type="datetime-local" placeholder="dd/mm/aaaa --:--"/>
+            <label for="date_limit"> Data limite </label>
+            <Input name="date_limit" type="date" placeholder="dd/mm/aaaa"/>
               
-              <div className="date">
-                <label for="date"> Data do evento </label>
-                <Input name="date" type="datetime-local" placeholder="dd/mm/aaaa --:--"/>
-                <label for="date_limit"> Data limite </label>
-                <Input name="date_limit" type="date" placeholder="dd/mm/aaaa"/>
+          </div> 
+          <Input name="max_user" type="number" placeholder="Maximo de Participantes"/>
+          <Input multiline name="description" id="description" placeholder="Descrição" />
+          <Input name="private_event" type="checkbox" placeholder="Privado"/>
+          <label for="private_event"> Privado </label>
               
-              </div> 
-    
-              <Input name="max_user" type="number" placeholder="Maximo de Participantes"/>
-              <Input multiline name="description" placeholder="Maximo de Participantes" />
-              <Input name="private_event" type="checkbox" placeholder="Privado"/>
-              <label for="private_event"> Privado </label>
-
-              <button type="submit">CRIAR</button>
-        
+          <button type="submit">CRIAR</button>
         </Form>
-
       </div>
     </div>
   </>;
