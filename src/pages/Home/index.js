@@ -6,7 +6,7 @@ import './styles.css';
 
 export default function Home() {
   return <>
-    <div className="wrapper">
+    <div className="wrapper-home">
       <div className="sidebar-menu">
         <div className="user-container">
           <div className="avatar"></div>
@@ -27,7 +27,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className="content">
+      <div className="content-home">
         <div className="search-box">
           <input type="text" placeholder="Insira um ID" className="search-input"/>
           <FiSearch size={20} className="search-icon"/>
