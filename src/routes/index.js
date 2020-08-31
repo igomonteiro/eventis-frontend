@@ -13,13 +13,12 @@ export default function Routes() {
   return(
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact component={SignIn}/>
-        <Route path="/register" exact component={SignUp}/>
+        <Route path="/" exact component={SignIn} />
+        <Route path="/register" exact component={SignUp} />
 
-        <Route path="/home" exact component={Home}/>
+        <Route path="/home" exact component={Home} />
 
-        <Route path="/event/register" exact component={EventRegister}/>
-
+        <Route path="/event/register" exact component={EventRegister} />
       </Switch>
     </BrowserRouter>
   );
