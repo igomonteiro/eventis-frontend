@@ -16,9 +16,9 @@ export default function Routes() {
         <Route path="/" exact component={SignIn} />
         <Route path="/register" exact component={SignUp} />
 
-        <Route path="/home" exact component={Home} />
+        <Route path="/home" exact component={Home} isPrivate />
 
-        <Route path="/event/register" exact component={EventRegister} />
+        <Route path="/event/register" exact component={EventRegister} isPrivate />
       </Switch>
     </BrowserRouter>
   );

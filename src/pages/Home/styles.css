@@ -1,152 +1,112 @@
-.wrapper-home {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-content: center;
-    justify-content: flex-start;
-  }
-  
-  .content-home {
-    min-width: 1300px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .search-box {
-    width: 1050px;
-    max-width: 1200px;
-    min-width: 800px;
-    margin-top: 20px;
-    height: 40px;
-    position: relative;
-    align-self: center;
-  }
-  
-  .search-input {
-    width: 100%;
-    height: 40px;
-    align-self: center;
-    padding: 15px;
-    box-sizing: border-box;
-    border: 1px solid #47B2B0;
-    background-color: var(--color-background);
-    border-radius: 30px;
-    outline: none;
-  }
-  
-  .search-icon {
-    position: absolute;
-    top: 25%;
-    right: 25px;
-    color: #47B2B0;
-  }
-  
-  .event {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    flex-wrap: wrap;
-  }
-  
-  
-  
-  .event-card {
-    width: 300px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 30px;
-    background: #FFFFFF;
-    margin-right: 30px;
-    margin-left: 30px;
-    margin-bottom: 0px;
-    margin-top: 30px;
-    text-align: start;
-    padding-left: 10px;
-    padding-top: 10px;
-  }
-  
-  .sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-    max-width: 80%;
-    height: 100%;
-    background: var(--color-main-system);
-  }
-  
-  .user-container {
-    display: flex;
-    width: 100%;
-    height: 65px;
-    margin-top: 10px;
-  }
-  
-  .user-container span {
-    margin-left: 5px;
-    align-self: center;
-    color: var(--color-main-text);
-  }
-  
-  .user-container a {
-    margin-left: auto;
-    margin-right: 15px;
-    align-self: center;
-    margin-top: 0px;
-    color: var(--color-main-text);
-  }
-  
-  .avatar {
-    height: 50px;
-    width: 50px;
-    background-color: #FFF;
-    border-radius: 50%;
-    margin-left: 15px;
-    margin-top: 5px;
-  }
-  
-  .sidebar-menu hr {
-    width: 90%;
-    align-self: center;
-    color: #FFF;
-    border: 1px solid;
-  }
-  
-  .sidebar-menu ul {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sidebar-menu ul li:first-child {
-    margin-top: 15px;
-    margin-left: 15px;
-    list-style: none;
-  }
-  
-  .sidebar-menu ul li {
-    margin-top: 8px;
-    margin-left: 15px;
-    list-style: none;
-  }
-  
-  .sidebar-menu ul li a:link {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
-  
-  .sidebar-menu ul li a:visited  {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
-  
-  .sidebar-menu ul li a:hover {
-    text-decoration: none;
-    color: var(--color-button);
-  }
-  
-  .sidebar-menu ul li a:active {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
+.content-home {
+  width: auto;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  margin-left: 300px;
+}
+
+.search-box {
+  width: 900px;
+  margin-top: 20px;
+  height: 40px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  height: 40px;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid #47B2B0;
+  background-color: var(--color-background);
+  border-radius: 30px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 25%;
+  right: 25px;
+  color: #47B2B0;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card-event {
+  width: 415px;
+  height: 315px;
+  border-radius: 30px;
+  margin-top: 30px;
+  margin-right: 30px;
+  padding-left: 10px;
+  padding-top: 10px;
+  background: #FFFFFF;
+}
+
+.card-title {
+  display: flex;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  margin-left: 30px;
+  color: var(--color-main-text);
+}
+
+.lock-icon {
+  margin-left: auto;
+  margin-right: 25px;
+}
+
+.card-text {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.card-text p {
+  text-align: justify;
+  color: #4C4C4C;
+}
+
+.flex-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-bottom {
+  display: flex;
+  margin-top: 70px;
+  margin-left: 25px;
+  justify-content: flex-start;
+}
+
+.card-bottom .max-users {
+  display: flex;
+  align-self: center;
+}
+
+.card-bottom .max-users span {
+  margin-left: 6px;
+  color: #7F7F7F;
+}
+
+.card-bottom button {
+  height: 40px;
+  width: 150px;
+  font-size: 15px;
+  color: #FFF;
+  background: var(--color-button);
+  transition: filter 0.2s;
+  border-radius: 35px;
+  border: 0;
+  margin-left: 30px;
+}
+
+.card-event button:hover {
+  filter: brightness(90%);
+}

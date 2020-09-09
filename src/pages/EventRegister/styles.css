@@ -1,155 +1,90 @@
-.wrapper-event-register {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-content: center;
-    justify-content: flex-start;
-  }
-  
-  .content-event-register {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-  }
+.content-event-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  margin-left: 300px;
+  text-align: center;
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-  }
-  
-  form input {
-    height: 50px;
-    background: #FFF;
-    border: 1px solid #B2B2B2;
-    box-sizing: border-box;
-    border-radius: 7px;
-    margin: 0 0 15px;
-    padding: 0 18px;
-  }
-  
-  form button {
-    height: 50px;
-    border-radius: 7px;
-    border: 0;
-    font-size: 16px;
-    color: #FFF;
-    background: var(--color-button);
-    margin: 5px 0 0;
-    transition: filter 0.2s;
-  }
-  
-  form button:hover {
-    filter: brightness(90%);
-  }
-  
-  form h1 {
-    color: var(--color-main-text);
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .date label {
-    display: flex;
-    flex-direction: row;
-    size: 10;    
-  }
-  .date input {
-    display: flex;
-    flex-direction: row;
-    height: 50px;
-    width: 250px;
-    background: #FFF;
-    border: 1px solid #B2B2B2;
-    box-sizing: border-box;
-    border-radius: 7px;
-    margin: 0 0 15px;
-    padding: 0 18px;
-  }
-  
-  /*Css Menu*/
+.form-event {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
 
-  .sidebar-menu {
-    display: flex;
-    flex-direction: column;
-    min-width: 300px;
-    max-width: 80%;
-    height: 100%;
-    background: var(--color-main-system);
-  }
-  
-  .user-container {
-    display: flex;
-    width: 100%;
-    height: 65px;
-    margin-top: 10px;
-  }
-  
-  .user-container span {
-    margin-left: 5px;
-    align-self: center;
-    color: var(--color-main-text);
-  }
-  
-  .user-container a {
-    margin-left: auto;
-    margin-right: 15px;
-    align-self: center;
-    margin-top: 0px;
-    color: var(--color-main-text);
-  }
-  
-  .avatar {
-    height: 50px;
-    width: 50px;
-    background-color: #FFF;
-    border-radius: 50%;
-    margin-left: 15px;
-    margin-top: 5px;
-  }
-  
-  .sidebar-menu hr {
-    width: 90%;
-    align-self: center;
-    color: #FFF;
-    border: 1px solid;
-  }
-  
-  .sidebar-menu ul {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sidebar-menu ul li:first-child {
-    margin-top: 15px;
-    margin-left: 15px;
-    list-style: none;
-  }
-  
-  .sidebar-menu ul li {
-    margin-top: 8px;
-    margin-left: 15px;
-    list-style: none;
-  }
-  
-  .sidebar-menu ul li a:link {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
-  
-  .sidebar-menu ul li a:visited  {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
-  
-  .sidebar-menu ul li a:hover {
-    text-decoration: none;
-    color: var(--color-button);
-  }
-  
-  .sidebar-menu ul li a:active {
-    text-decoration: none;
-    color: var(--color-main-text);
-  }
+form label {
+  align-self: flex-start;
+  color: var(--color-main-text);
+}
+
+form input {
+  height: 50px;
+  background: #FFF;
+  border: 1px solid #B2B2B2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 0 18px;
+}
+
+form button {
+  height: 50px;
+  border-radius: 7px;
+  border: 0;
+  font-size: 16px;
+  color: #FFF;
+  background: var(--color-button);
+  margin: 5px 0 0;
+  transition: filter 0.2s;
+}
+
+form textarea {
+  resize: none;
+  background: #FFF;
+  border: 1px solid #B2B2B2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 15px 18px;
+}
+
+form button:hover {
+  filter: brightness(90%);
+}
+
+form h1 {
+  color: var(--color-main-text);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.checkbox-private {
+  display: flex;
+  align-content: center;
+  margin-top: -14px;
+}
+
+.checkbox-private label {
+  margin-top: 15px;
+  margin-left: 7px;
+  font-size: 13px;
+}
+
+.checkbox-input {
+  margin-left: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
