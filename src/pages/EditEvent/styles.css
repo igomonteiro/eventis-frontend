@@ -1,0 +1,90 @@
+.content-event-register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  height: 100%;
+  margin-left: 300px;
+  text-align: center;
+}
+
+.form-event {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+form label {
+  align-self: flex-start;
+  color: var(--color-main-text);
+}
+
+form input {
+  height: 50px;
+  background: #FFF;
+  border: 1px solid #B2B2B2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 0 18px;
+}
+
+form button {
+  height: 50px;
+  border-radius: 7px;
+  border: 0;
+  font-size: 16px;
+  color: #FFF;
+  background: var(--color-button);
+  margin: 5px 0 0;
+  transition: filter 0.2s;
+}
+
+form textarea {
+  resize: none;
+  background: #FFF;
+  border: 1px solid #B2B2B2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  margin: 0 0 15px;
+  padding: 15px 18px;
+}
+
+form button:hover {
+  filter: brightness(90%);
+}
+
+form h1 {
+  color: var(--color-main-text);
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.checkbox-private {
+  display: flex;
+  align-content: center;
+  margin-top: -14px;
+}
+
+.checkbox-private label {
+  margin-top: 15px;
+  margin-left: 7px;
+  font-size: 13px;
+}
+
+.checkbox-input {
+  margin-left: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

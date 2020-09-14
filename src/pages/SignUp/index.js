@@ -10,20 +10,6 @@ import horizontalLogo from '../../assets/images/only-logo.svg';
 
 import { signUpRequest } from '../../store/modules/auth/actions';
 
-// const schema = Yup.object().shape({
-//   name: Yup.string()
-//     .required('O nome é obrigatório'),
-//   email: Yup.string()
-//     .email('Insira um e-mail válido')
-//     .required('O e-mail é obrigatório'),
-//   password: Yup.string()
-//     .required('A senha é obrigatória')
-//     .min(6, 'Senha precisa ter no mínimo 6 caracteres'),
-//   confirmPassword: Yup.string()
-//     .oneOf([Yup.ref('password')], 'Este campo precisa ser igual a senha')
-//     .required('Você precisa confirmar a sua senha'),
-// });
-
 export default function SignUp() {
   const dispatch = useDispatch();
 

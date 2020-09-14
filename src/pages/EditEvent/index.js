@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
-import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 import api from '../../services/api';
 
 import Sidebar from '../Sidebar';
 import './styles.css';
 
-export default function EventRegister() {
+export default function EditEvent({ match }) {
 
-  const creatorId = useSelector(state => state.user.profile.id);
   const history = useHistory();
 
   var style = {};
@@ -30,12 +28,31 @@ export default function EventRegister() {
     style.display = 'none';
   }
 
-  async function handleCreateEvent(e) {
+  useEffect(() => {
+    api.get(`myEvents/${match.params.id}`)
+      .then(response => {
+        setTitle(response.data.title);
+        setLocation(response.data.location);
+        setDate(response.data.date);
+        setDateLimit(response.data.date_limit);
+        setMaxUsers(response.data.max_users);
+        setDescription(response.data.description);
+        setPrivateEvent(response.data.private_event);
+        setShowPassword(response.data.private_event);
+        setPassword(response.data.password);
+        console.log(response.data);
+      })
+      .catch(() => {
+        history.push('/event/myEvents');
+        toast.error('Falha ao editar, este evento não é seu!');
+      });
+  }, [match.params.id, history]);
+
+  async function handleEditEvent(e) {
     e.preventDefault();
 
     try {
-      await api.post('events', {
-        creator_id: creatorId,
+      await api.put(`myEvents/${match.params.id}`, {
         title,
         description,
         location,
@@ -46,20 +63,21 @@ export default function EventRegister() {
         date_limit: dateLimit,
       });
 
-      toast.success('Evento cadastrado com sucesso!');
+      toast.success('Evento editado com sucesso!');
       history.push('/event/myEvents');
     } catch(error) {
-      toast.error('Falha ao cadastrar, verifique os dados do evento');
+      toast.error('Falha ao editar, verifique os dados do evento');
     }
   }
 
-  return <>
+  return (
+    <>
     <Sidebar></Sidebar>
 
     <div className="content-event-register">
       <div className="form-event">
-        <form onSubmit={handleCreateEvent}>
-          <h1>Cadastre seu evento</h1>
+        <form onSubmit={handleEditEvent}>
+          <h1>Edite seu evento</h1>
 
           <input
             name="title"
@@ -77,22 +95,22 @@ export default function EventRegister() {
             required
           />    
 
-          <label for="date"> Data do evento </label>
+          <label htmlFor="date"> Data do evento </label>
           <input
             name="date"
             type="datetime-local"
             placeholder="dd/mm/aaaa --:--"
-            value={date}
+            value={moment(date).format("YYYY-MM-DD[T]HH:MM")}
             onChange={ e => setDate(e.target.value) }
             required
           />
 
-          <label for="dateLimit"> Data limite </label>
+          <label htmlFor="dateLimit"> Data limite </label>
           <input
             name="dateLimit"
             type="date"
             placeholder="dd/mm/aaaa"
-            value={dateLimit}
+            value={moment(dateLimit).format("YYYY-MM-DD")}
             onChange={ e => setDateLimit(e.target.value) }
             required
           />
@@ -113,7 +131,7 @@ export default function EventRegister() {
             name="description"
             placeholder="Insira uma descrição"
             value={description}
-            maxlength="225"
+            maxLength="225"
             onChange={ e => setDescription(e.target.value) }
           />
 
@@ -132,14 +150,16 @@ export default function EventRegister() {
               className="checkbox-input"
               name="privateEvent"
               type="checkbox"
+              checked={privateEvent}
               placeholder="Privado"
-              onChange={ () => { setPrivateEvent(!privateEvent); setShowPassword(!privateEvent) }  }
+              onChange={ () => { setPassword(""); setPrivateEvent(!privateEvent); setShowPassword(!privateEvent) }  }
             />
-            <label for="privateEvent">Privado</label>
+            <label htmlFor="privateEvent">Privado</label>
           </div>
           <button type="submit">CRIAR</button>
         </form>
       </div>
     </div>
-  </>;
+    </>
+  );
 }

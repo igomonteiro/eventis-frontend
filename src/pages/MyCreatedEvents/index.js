@@ -1,56 +1,57 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
-import { FiSearch, FiLock, FiUnlock, FiUsers } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+
 import api from '../../services/api';
 
 import Sidebar from '../Sidebar';
 import './styles.css';
 
-export default function Home() {
+export default function MyCreatedEvents() {
 
+  const history = useHistory();
   const [events, setEvents] = useState([]);
   
   useEffect(() => {
-    api.get('/events')
+    api.get('myEvents')
       .then(response => {
         setEvents(response.data);
       });
   }, []);
 
-  function isPrivate(isPrivate) {
-    if (isPrivate) {
-      return <FiLock size={19} color="#47B2B0"></FiLock>;
-    } else {
-      return <FiUnlock size={19} color="#47B2B0"></FiUnlock>
+  function goToEditEvent(id) {
+    history.push(`myEvents/${id}`);
+  }
+
+  async function handleDeleteEvent(id) {
+    try {
+      await api.delete(`myEvents/${id}`);
+
+      setEvents(events.filter(event => event.id !== id));
+
+      toast.success('Evento excluído com sucesso!');
+    } catch(err) {
+      toast.error('Falha ao deletar evento, tente novamente');
     }
   }
 
   return (
     <>
     <Sidebar></Sidebar>
-
     <div className="content-home">
-      <div className="search-box">
-        <input type="text" placeholder="Insira um ID" className="search-input"/>
-        <FiSearch size={20} className="search-icon"/>
-      </div>
-
-      <div className="event">
+      <div className="event-myevents">
 
           {events.map(event => (
             <>
-              <div key={event.id} className="card-event">
-                <div className="card-title">
-                  <div className="title">
+              <div key={ event.id } className="card-event-myevents">
+                <div className="card-title-myevents">
+                  <div className="title-myevents">
                     <h3>{ event.title }</h3>
-                  </div>
-
-                  <div className="lock-icon">
-                    { isPrivate(event.private_event) }
                   </div>
                 </div>
 
-                <div className="card-text">
+                <div className="card-text-myevents">
                 <p style={{ fontSize: "16px" }}>
                   { event.description }
                 </p>
@@ -62,7 +63,7 @@ export default function Home() {
                 <br/>
                 <br/>
 
-                <div className="flex-text">
+                <div className="flex-text-myevents">
                   <p style={{ fontSize: "14px" }}>
                     Data: { moment(event.date).format("DD/MM/YYYY [às] h:mm") }
                   </p>
@@ -72,12 +73,9 @@ export default function Home() {
                 </div>
                 </div>
 
-                <div className="card-bottom">
-                  <div className="max-users">
-                    <FiUsers size={19} color="#47B2B0"></FiUsers>
-                    <span>7/{ event.max_users }</span>
-                  </div>
-                <button type="submit">PARTICIPAR</button>
+                <div className="card-bottom-myevents">
+                  <button onClick={() => goToEditEvent(event.id)}type="button">EDITAR</button>
+                  <button onClick={() => handleDeleteEvent(event.id)} type="button">EXCLUIR</button>
                 </div>
               </div>         
             </>
@@ -85,5 +83,5 @@ export default function Home() {
       </div>
     </div>
     </>
-  )
+  );
 }

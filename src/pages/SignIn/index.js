@@ -9,11 +9,6 @@ import horizontalLogo from '../../assets/images/only-logo.svg';
 
 import { signInRequest } from '../../store/modules/auth/actions';
 
-// const schema = Yup.object().shape({
-//   email: Yup.string().email('Insira um e-mail válido').required('O e-mail é obrigatório'),
-//   password: Yup.string().required('A senha é obrigatória'),
-// });
-
 export default function SignIn() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.auth.loading);
