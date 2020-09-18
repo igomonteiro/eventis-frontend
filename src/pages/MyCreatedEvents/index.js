@@ -76,7 +76,7 @@ export default function MyCreatedEvents() {
                 <div className="card-bottom-myevents">
                   <button onClick={() => goToEditEvent(event.id)}type="button">EDITAR</button>
                   <button onClick={() => handleDeleteEvent(event.id)} type="button">EXCLUIR</button>
-                </div>
+                </div>               
               </div>         
             </>
           ))}
