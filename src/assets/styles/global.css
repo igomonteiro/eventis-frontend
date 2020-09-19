@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-  font-size: 60%;
   --color-background: #EDEDED;
   --color-button: #269997;
   --color-main-text: #333333;
@@ -27,7 +26,8 @@ body,
 input,
 button,
 textarea {
-  font: 500 1.6rem Roboto;
+  font-family: Roboto;
+  font-weight: 500;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */

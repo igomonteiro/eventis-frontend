@@ -3,6 +3,13 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import api from '../../services/api';
 
 import Sidebar from '../Sidebar';
@@ -12,6 +19,17 @@ export default function MyCreatedEvents() {
 
   const history = useHistory();
   const [events, setEvents] = useState([]);
+  const [eventId, setEventId] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = (id) => {
+    setEventId(id);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   
   useEffect(() => {
     api.get('myEvents')
@@ -75,11 +93,40 @@ export default function MyCreatedEvents() {
 
                 <div className="card-bottom-myevents">
                   <button onClick={() => goToEditEvent(event.id)}type="button">EDITAR</button>
-                  <button onClick={() => handleDeleteEvent(event.id)} type="button">EXCLUIR</button>
+                  <button onClick={() => handleClickOpen(event.id)} type="button">EXCLUIR</button>
                 </div>               
               </div>         
             </>
           ))}
+
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Deseja excluir este evento?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Se você aceitar, o evento será excluído permanentemente.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Não
+            </Button>
+            <Button
+              onClick={() => {
+                handleDeleteEvent(eventId);
+                handleClose();
+              }}
+              color="primary"
+              autoFocus
+            >
+              Sim
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
     </>

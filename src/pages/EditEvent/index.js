@@ -40,7 +40,6 @@ export default function EditEvent({ match }) {
         setPrivateEvent(response.data.private_event);
         setShowPassword(response.data.private_event);
         setPassword(response.data.password);
-        console.log(response.data);
       })
       .catch(() => {
         history.push('/event/myEvents');
