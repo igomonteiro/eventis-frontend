@@ -6,12 +6,12 @@
   margin-left: 300px;
 }
 
-.event-myevents {
+.event-created {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
 }
 
-.card-event-myevents {
+.card-event-created {
   display:flex;
   flex-direction: column;
   flex: 1;
@@ -24,68 +24,58 @@
   background: #FFFFFF;
 }
 
-.card-title-myevents {
+.card-title-created {
   display: flex;
   margin-bottom: 15px;
 }
 
-.title-myevents {
+.title-created {
   flex: 1;
   text-align: center;
-  margin-left: 40px;
   color: var(--color-main-text);
 }
 
-.max-users-edited {
-  display: flex;
-}
-
-.max-users-edited span {
-  margin-left: 6px;
-  margin-bottom: 10px;
-  color: #7F7F7F;
-}
-
-.max-users-edited {
-  margin-left: auto;
-  margin-right: 25px;
-  margin-top: 3px;
-}
-
-.card-text-myevents {
+.card-text-created {
   padding-right: 25px;
   padding-left: 25px;
 }
 
-.card-text-myevents p {
+.card-text-created p {
   text-align: justify;
   color: #4C4C4C;
 }
 
-.flex-text-myevents {
+.flex-text-created {
   display: flex;
   justify-content: space-between;
 }
 
-.card-bottom-myevents {
+.card-bottom-created {
   display: flex;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
-.card-bottom-myevents button {
+.card-bottom-created button {
   height: 40px;
-  width: 150px;
+  width: 200px;
   font-size: 15px;
   color: #FFF;
   background: var(--color-button);
   transition: filter 0.2s;
   border-radius: 35px;
   border: 0;
-  margin-left: 30px;
 }
 
-.card-event button:hover {
+.card-bottom-created button:disabled {
+  background: #CCCCCC;
+}
+
+.card-event-created button:hover {
   filter: brightness(90%);
+}
+
+.card-event-created button:disabled:hover {
+  filter: brightness(100%);
 }

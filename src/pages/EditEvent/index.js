@@ -155,7 +155,7 @@ export default function EditEvent({ match }) {
             />
             <label htmlFor="privateEvent">Privado</label>
           </div>
-          <button type="submit">CRIAR</button>
+          <button type="submit">CONFIRMAR EDIÇÃO</button>
         </form>
       </div>
     </div>

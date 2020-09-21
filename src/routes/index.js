@@ -7,6 +7,7 @@ import SignUp from '../pages/SignUp';
 
 import Home from '../pages/Home';
 import MyCreatedEvents from '../pages/MyCreatedEvents';
+import MySubscriptions from '../pages/MySubscriptions';
 import EditEvent from '../pages/EditEvent';
 import EventRegister from '../pages/EventRegister'
  
@@ -21,6 +22,7 @@ export default function Routes() {
         
         <Route path="/event/register" exact component={EventRegister} isPrivate />
         <Route path="/event/myEvents" exact component={MyCreatedEvents} isPrivate />
+        <Route path="/event/MySubscriptions" exact component={MySubscriptions} isPrivate />
         <Route path="/event/myEvents/:id" exact component={EditEvent} isPrivate />
 
       </Switch>

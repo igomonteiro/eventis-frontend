@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import { FiUsers } from 'react-icons/fi';
 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText,
+  DialogTitle } from '@material-ui/core/DialogTitle';
 
 import api from '../../services/api';
 
@@ -18,6 +15,7 @@ import './styles.css';
 export default function MyCreatedEvents() {
 
   const history = useHistory();
+
   const [events, setEvents] = useState([]);
   const [eventId, setEventId] = useState('');
   const [open, setOpen] = useState(false);
@@ -47,7 +45,6 @@ export default function MyCreatedEvents() {
       await api.delete(`myEvents/${id}`);
 
       setEvents(events.filter(event => event.id !== id));
-
       toast.success('Evento excluído com sucesso!');
     } catch(err) {
       toast.error('Falha ao deletar evento, tente novamente');
@@ -64,8 +61,15 @@ export default function MyCreatedEvents() {
             <>
               <div key={ event.id } className="card-event-myevents">
                 <div className="card-title-myevents">
+                  
+
                   <div className="title-myevents">
                     <h3>{ event.title }</h3>
+                  </div>
+
+                  <div className="max-users-edited">
+                    <FiUsers size={19} color="#47B2B0"></FiUsers>
+                    <span>{ event.subscribers }/{ event.max_users }</span>
                   </div>
                 </div>
 
