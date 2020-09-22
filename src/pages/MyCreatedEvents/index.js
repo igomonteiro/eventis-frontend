@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { FiUsers } from 'react-icons/fi';
 
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle } from '@material-ui/core/DialogTitle';
+  DialogTitle } from '@material-ui/core';
 
 import api from '../../services/api';
 

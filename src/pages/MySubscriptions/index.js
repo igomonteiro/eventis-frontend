@@ -3,7 +3,7 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 
 import {Button, Dialog, DialogActions, DialogContent, DialogContentText, 
-  DialogTitle} from '@material-ui/core/';
+  DialogTitle} from '@material-ui/core';
 
 import api from '../../services/api';
 
