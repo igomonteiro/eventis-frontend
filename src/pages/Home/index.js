@@ -9,7 +9,7 @@ import api from '../../services/api';
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle,
   DialogContentText } from '@material-ui/core';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../components/Sidebar';
 import './styles.css';
 
 export default function Home() {

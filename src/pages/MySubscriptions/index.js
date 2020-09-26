@@ -7,7 +7,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogContentText,
 
 import api from '../../services/api';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../components/Sidebar';
 import './styles.css';
 
 export default function MySubscriptions() {

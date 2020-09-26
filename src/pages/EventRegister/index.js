@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 import api from '../../services/api';
 
-import Sidebar from '../Sidebar';
+import Sidebar from '../../components/Sidebar';
 import './styles.css';
 
 export default function EventRegister() {

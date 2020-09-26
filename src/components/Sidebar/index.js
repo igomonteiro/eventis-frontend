@@ -1,11 +1,14 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FiPower } from 'react-icons/fi';
+
+import Notification from '../Notification';
+
+import userAvatar from '../../assets/images/user.png';
 
 import { signOut } from '../../store/modules/auth/actions';
 
-export default function Teste() {
+export default function Sidebar() {
 
   function handleSignOut() {
     dispatch(signOut());
@@ -18,9 +21,11 @@ export default function Teste() {
     <>
       <div className="sidebar-menu">
       <div className="user-container">
-        <div className="avatar"></div>
-        <span>Olá, { creatorName.split(' ')[0] }!</span>
-        <FiPower onClick={ handleSignOut } size={16} />
+        <div className="avatar-container">
+          <img src={userAvatar} width="50" height="50" alt=""/>
+          <span>Olá, { creatorName.split(' ')[0] }!</span>
+        </div>
+        <Notification/>
       </div>
 
       <hr></hr>
@@ -31,6 +36,7 @@ export default function Teste() {
         <li><Link to="/event/register">Cadastrar evento</Link></li>
         <li><Link to="/event/mySubscriptions">Minhas inscrições</Link></li>
         <li><Link to="/event/myEvents">Meus eventos criados</Link></li>
+        <li><Link onClick={ handleSignOut }>Sair</Link></li>
       </ul>
     </div>
     </>
