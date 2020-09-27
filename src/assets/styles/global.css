@@ -30,6 +30,10 @@ textarea {
   font-weight: 500;
 }
 
+button {
+  cursor: pointer;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #CCC;
 }

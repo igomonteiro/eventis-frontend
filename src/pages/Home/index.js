@@ -110,7 +110,6 @@ export default function Home() {
       </div>
 
       <div className="event">
-
           {events.map(event => (
             <>
               <div key={event.id} className="card-event">
@@ -153,9 +152,7 @@ export default function Home() {
                   </div>
                 <button
                   onClick={() => {
-
                     setSubscriptionEventId(event.id);
-
                     if (event.private_event) {
                       handleClickOpenPasswordForm();
                       setPrivateDialog(true);
