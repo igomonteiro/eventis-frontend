@@ -29,7 +29,6 @@ export default function MySubscriptions() {
     api.get('subscription')
       .then(response => {
         setSubscriptions(response.data);
-        console.log(response.data);
       });
   }, []);
 
@@ -39,20 +38,27 @@ export default function MySubscriptions() {
         id: subId
       });
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 3250);
+      setSubscriptions(
+        subscriptions.map(sub => sub.id === subId ? { ...sub, canceled_at: new Date() } : sub )
+      )
+
       toast.success('Você cancelou sua participação com sucesso.')
     } catch(err) {
       toast.error('Falha ao cancelar participação em evento, tente novamente');
     }
   }
 
-  function showCancelButton(id, status) {
+  function showCancelButton(id, status, eventDate) {
 
-    console.log(status);
+    let now = moment(new Date());
+    let momentEventDate = moment(eventDate);
+
     if (status != null) {
       return <button type="button" disabled>INSCRIÇÃO CANCELADA</button>;
+    } else if (now.isAfter(momentEventDate)) {
+      return <button type="button" disabled>EVENTO JÁ ACONTECEU</button>;
+    } else if (now.isSame(momentEventDate, 'day')) {
+      return <button type="button" disabled>EVENTO ACONTECE HOJE</button>;
     } else {
       return <button onClick={() => handleClickOpen(id)} type="button">CANCELAR INSCRIÇÃO</button>;
     }
@@ -93,7 +99,7 @@ export default function MySubscriptions() {
                 </div>
 
                 <div className="card-bottom-created">
-                  { showCancelButton(subs.id, subs.canceled_at) }
+                  { showCancelButton(subs.id, subs.canceled_at, subs.evento.date) }
                 </div>               
               </div>         
             </>

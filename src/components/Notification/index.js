@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
-import { useSelector } from 'react-redux';
 import { FiMail } from 'react-icons/fi';
+import Scrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import Badge from '@material-ui/core/Badge';
 
@@ -47,8 +48,13 @@ export default function Sidebar() {
   }
 
   async function markAsRead(notificationId) {
-    console.log(notificationId);
     await api.put(`notifications/${notificationId}`);
+
+    setNotifications(
+      notifications.map(notification =>
+        notification._id === notificationId ? { ...notification, read: true } : notification
+      )
+    )
   }
 
   if (!visible) {
@@ -91,9 +97,10 @@ export default function Sidebar() {
         </Badge>
     
         <div style={style} className="notification-list">
+          <Scrollbar style={{ maxHeight: '300px', padding: '5px 15px'}}>
           {notifications.map(notification => (
               <>
-                <div className="notification">
+                <div key={notification._id} className="notification">
                   <p>{notification.content}</p>
                   <time>{ dateTest(notification.createdAt) }</time>
                   <button
@@ -107,6 +114,7 @@ export default function Sidebar() {
               </>
             ))
           }
+          </Scrollbar>
         </div>
       </div>
     </>

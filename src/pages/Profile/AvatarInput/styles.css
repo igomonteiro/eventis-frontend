@@ -1,0 +1,30 @@
+.form-profile {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-profile label {
+  cursor: pointer;
+}
+
+.form-profile label:hover {
+  opacity: 0.7;
+}
+
+.form-profile label img {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  background: #EEE;
+}
+
+.form-profile label input {
+  display: none;
+}
+
+.form-profile button {
+  font-weight: 700;
+}

@@ -117,7 +117,7 @@ export default function EditEvent({ match }) {
           <input
             name="maxUser"
             type="number"
-            min="0"
+            min="1"
             placeholder="Máximo de participantes"
             value={maxUsers}
             onChange={ e => setMaxUsers(e.target.value) }

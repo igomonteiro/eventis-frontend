@@ -32,6 +32,7 @@ export default function MyCreatedEvents() {
   useEffect(() => {
     api.get('myEvents')
       .then(response => {
+        console.log(response.data);
         setEvents(response.data);
       });
   }, []);
@@ -90,7 +91,7 @@ export default function MyCreatedEvents() {
                     Data: { moment(event.date).format("DD/MM/YYYY [às] h:mm") }
                   </p>
                   <p style={{ fontSize: "14px" }}>
-                    Expira em: { moment(event.dateLimit).format("DD/MM/YYYY")}
+                    Expira em: {moment(event.date_limit).format("DD/MM/YYYY")}
                   </p>
                 </div>
                 </div>

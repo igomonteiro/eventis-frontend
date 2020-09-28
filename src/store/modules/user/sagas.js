@@ -9,10 +9,10 @@ export function* updateProfile({ payload }) {
 
   try {
 
-    const { name, email, ...rest } = payload.data;
+    const { name, avatar_id, ...rest } = payload.data;
 
     const profile = Object.assign(
-      { name, email },
+      { name, avatar_id },
       rest.oldPassword ? rest : {}
     );
 
@@ -21,7 +21,6 @@ export function* updateProfile({ payload }) {
     toast.success('Perfil atualizado com sucesso');
 
     yield put(updateProfileSuccess(response.data));
-
   } catch(error) {
     toast.error('Erro ao atualizar perfil, confira os dados');
     yield put(updateProfileFailure());
