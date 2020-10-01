@@ -46,7 +46,7 @@ export default function EventRegister() {
         date_limit: dateLimit,
       });
 
-      toast.success('Evento cadastrado com sucesso!');
+      toast('Evento cadastrado com sucesso!');
       history.push('/event/myEvents');
     } catch(error) {
       toast.error('Falha ao cadastrar, verifique os dados do evento');
@@ -66,6 +66,8 @@ export default function EventRegister() {
             placeholder="Título do evento"
             value={title}
             onChange={ e => setTitle(e.target.value) }
+            minLength="4"
+            maxLength="25"
             required
           />
 
@@ -74,6 +76,8 @@ export default function EventRegister() {
             placeholder="Endereço"
             value={location}
             onChange={ e => setLocation(e.target.value) }
+            minLength="10"
+            maxLength="55"
             required
           />    
 
@@ -113,7 +117,7 @@ export default function EventRegister() {
             name="description"
             placeholder="Insira uma descrição"
             value={description}
-            maxlength="225"
+            maxLength="225"
             onChange={ e => setDescription(e.target.value) }
           />
 

@@ -13,6 +13,10 @@
   position: relative;
 }
 
+.search-box button {
+  border: none;
+}
+
 .search-input {
   width: 100%;
   height: 40px;
@@ -21,6 +25,7 @@
   border: 1px solid #47B2B0;
   background-color: var(--color-background);
   border-radius: 30px;
+  color: var(--color-main-text);
   outline: none;
 }
 
@@ -47,6 +52,11 @@
   padding-left: 10px;
   padding-top: 10px;
   background: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-event:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .card-title {
@@ -63,6 +73,17 @@
 .lock-icon {
   margin-left: auto;
   margin-right: 25px;
+}
+
+.card-creator {
+  display: flex;
+}
+
+.card-creator p {
+  margin-top: 10px;
+  margin-left: 5px;
+  font-weight: 700;
+  color: #666666;
 }
 
 .card-text {
@@ -82,7 +103,7 @@
 
 .card-bottom {
   display: flex;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-left: 25px;
   margin-bottom: 20px;
   justify-content: flex-start;
@@ -96,6 +117,14 @@
 .card-bottom .max-users span {
   margin-left: 6px;
   color: #7F7F7F;
+}
+
+.card-bottom .event-id {
+  margin-top: 12px;
+  margin-left: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #CCCCCC;
 }
 
 .card-bottom button {

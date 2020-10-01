@@ -3,9 +3,14 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import { FiUsers } from 'react-icons/fi';
+import { List } from '@material-ui/icons';
+
+import { makeStyles } from '@material-ui/core/styles';
+import UsersList from '@material-ui/core/List';
 
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText,
-  DialogTitle } from '@material-ui/core';
+  DialogTitle, ListItem, Divider, ListItemText, ListItemAvatar, Avatar }
+  from '@material-ui/core';
 
 import api from '../../services/api';
 
@@ -14,11 +19,31 @@ import './styles.css';
 
 export default function MyCreatedEvents() {
 
+  const useStyles = makeStyles({
+    root: {
+      width: '100%',
+      maxWidth: '50ch',
+      marginTop: '-20px'
+    },
+    inline: {
+      display: 'inline',
+    },
+  });
+
+  const style = {
+    color: '#FFF',
+    backgroundColor: '#269997',
+    marginTop: '10px',
+  };
+
   const history = useHistory();
+  const classes = useStyles();
 
   const [events, setEvents] = useState([]);
   const [eventId, setEventId] = useState('');
   const [open, setOpen] = useState(false);
+  const [openList, setOpenList] = useState(false);
+  const [subscribers, setSubscribers] = useState([]);
 
   const handleClickOpen = (id) => {
     setEventId(id);
@@ -28,11 +53,32 @@ export default function MyCreatedEvents() {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
+  function profileAvatar(subscriber) {
+    if (subscriber.avatar) {
+      return <Avatar style={ style } src={subscriber.avatar.url}></Avatar>;
+    } else {
+      return <Avatar style={ style }>{subscriber.name.charAt(0)}</Avatar>;
+    }
+  }
+
+  async function handleClickOpenList(eventId) {
+    try {
+      setOpenList(true);
+      const response = await api.get(`myEvents/subscribers/${eventId}`);
+      setSubscribers(response.data);
+    } catch (err) {
+      toast.error('Falha listar inscritos no evento, tente novamente');
+    }
+  };
+
+  const handleCloseList = () => {
+    setOpenList(false);
+  };
+
   useEffect(() => {
     api.get('myEvents')
       .then(response => {
-        console.log(response.data);
         setEvents(response.data);
       });
   }, []);
@@ -46,7 +92,7 @@ export default function MyCreatedEvents() {
       await api.delete(`myEvents/${id}`);
 
       setEvents(events.filter(event => event.id !== id));
-      toast.success('Evento excluído com sucesso!');
+      toast('Evento excluído com sucesso!');
     } catch(err) {
       toast.error('Falha ao deletar evento, tente novamente');
     }
@@ -62,11 +108,13 @@ export default function MyCreatedEvents() {
             <>
               <div key={ event.id } className="card-event-myevents">
                 <div className="card-title-myevents">
-                  
-
-                  <div className="title-myevents">
-                    <h3>{ event.title }</h3>
-                  </div>
+                  <button
+                      style={{ background: 'none', outline: 'none', border: 0}}
+                      onClick={() => handleClickOpenList(event.id)}
+                    >
+                    <List style={{ marginLeft: '20px', color: '#47B2B0' }}/>
+                  </button>
+                  <h3>{ event.title }</h3>
 
                   <div className="max-users-edited">
                     <FiUsers size={19} color="#47B2B0"></FiUsers>
@@ -88,7 +136,7 @@ export default function MyCreatedEvents() {
 
                 <div className="flex-text-myevents">
                   <p style={{ fontSize: "14px" }}>
-                    Data: { moment(event.date).format("DD/MM/YYYY [às] h:mm") }
+                    Data: { moment(event.date).format("DD/MM/YYYY [às] H:mm") }
                   </p>
                   <p style={{ fontSize: "14px" }}>
                     Expira em: {moment(event.date_limit).format("DD/MM/YYYY")}
@@ -103,6 +151,47 @@ export default function MyCreatedEvents() {
               </div>         
             </>
           ))}
+
+          
+        <Dialog
+          open={openList}
+          onClose={handleCloseList}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Lista de participantes"}</DialogTitle>
+          <DialogContent>
+          <UsersList className={classes.root}>
+            {subscribers.map(subscriber => {
+              if (!subscriber.canceledDate) {
+                return (
+                  <>
+                    <ListItem alignItems="flex-start">
+                      <ListItemAvatar>
+                        {profileAvatar(subscriber.user)}
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={subscriber.user.name}
+                        secondary={
+                          <React.Fragment>
+                            {"Inscreveu-se no evento em " + moment(subscriber.subscriptionDate).format("DD/MM/YYYY [às] H:mm")}
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                    <Divider variant="inset" component="li" />
+                  </>
+                )
+              }
+            })}
+          </UsersList>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseList} color="primary" autoFocus>
+              Fechar
+            </Button>
+          </DialogActions>
+        </Dialog>
 
         <Dialog
           open={open}

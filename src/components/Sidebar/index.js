@@ -13,7 +13,7 @@ export default function Sidebar() {
     dispatch(signOut());
   }
 
-  let style = {
+  const style = {
     color: '#269997',
     backgroundColor: '#FFF',
     marginTop: '10px',
@@ -24,9 +24,9 @@ export default function Sidebar() {
 
   function profileAvatar() {
     if (profile.avatar) {
-      return <Avatar style={ style } src={profile.avatar.url}></Avatar>;
+      return <Link to="/profile"><Avatar style={ style } src={profile.avatar.url}></Avatar></Link>;
     } else {
-      return <Avatar style={ style }>{profile.name.charAt(0)}</Avatar>;
+      return <Link to="/profile"><Avatar style={ style }>{profile.name.charAt(0)}</Avatar></Link>;
     }
   }
 
@@ -36,7 +36,7 @@ export default function Sidebar() {
       <div className="user-container">
         <div className="avatar-container">
           { profileAvatar() }
-          <span>Olá, { profile.name.split(' ')[0] }!</span>
+          <span>Bem-vindo, { profile.name.split(' ')[0] }!</span>
         </div>
         <Notification/>
       </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
-import { FiMail } from 'react-icons/fi';
 import Scrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import { Email } from '@material-ui/icons';
+import { makeStyles  } from '@material-ui/core/styles';
 
 import Badge from '@material-ui/core/Badge';
 
@@ -12,11 +13,19 @@ import './styles.css';
 
 export default function Sidebar() {
 
+  const useStyles = makeStyles({
+    customBadge: {
+      backgroundColor: 'white',
+    },
+  });
+
+  const classes = useStyles();
+
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
   
   const hasUnread = useMemo(
-    () => !!notifications.find(notification => notification.read === false),
+    () => notifications.filter(notification => notification.read === false).length,
     [notifications]
   );
 
@@ -42,7 +51,7 @@ export default function Sidebar() {
       }
     } else {
       return {
-        content: 'none'
+        display: 'none',
       }
     }
   }
@@ -87,12 +96,12 @@ export default function Sidebar() {
   return (
     <>
       <div className="notification-content">
-        <Badge color="secondary" variant="dot" invisible={!hasUnread}>
+        <Badge classes={{ badge: classes.customBadge }} badgeContent={hasUnread}>
           <button
             style={{ background: 'none', outline: 'none', border: 0}}
             onClick={() => { setVisible(!visible); }}
           >
-            <FiMail size={22}/>
+            <Email style={{ color: '#0B7371' }}/>
           </button>
         </Badge>
     
@@ -102,6 +111,7 @@ export default function Sidebar() {
               <>
                 <div key={notification._id} className="notification">
                   <p>{notification.content}</p>
+
                   <time>{ dateTest(notification.createdAt) }</time>
                   <button
                     onClick={() => markAsRead(notification._id) }

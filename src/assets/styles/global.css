@@ -8,6 +8,19 @@
   --color-main-system: #95E5E4;
 }
 
+.Toastify__toast-container {
+  width: 360px;
+}
+
+.Toastify__close-button > svg{
+  color: #FFF;
+}
+
+.Toastify__toast--default {
+  color: #FFF;
+  background-color: #47B3B0;
+}
+
 * {
   margin: 0;
   padding: 0;

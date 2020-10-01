@@ -43,6 +43,8 @@ export default function SignIn() {
               placeholder="Sua senha"
               value={password}
               onChange= {e => setPassword(e.target.value)}
+              minLength="6"
+              maxLength="24"
             />
 
             <button type="submit">{ loading ? 'CARREGANDO...' : 'ACESSAR'}</button>

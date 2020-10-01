@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
-import { FiSearch, FiLock, FiUnlock, FiUsers } from 'react-icons/fi';
+import { FiSearch, FiUsers } from 'react-icons/fi';
+import { LockOpenOutlined, LockOutlined } from '@material-ui/icons';
+import Avatar from '@material-ui/core/Avatar';
 import { toast } from 'react-toastify';
 
 import api from '../../services/api';
@@ -34,6 +36,7 @@ export default function Home() {
   };
 
   const userId = useSelector(state => state.user.profile.id);
+  const [eventId, setEventId] = useState('');
   const [events, setEvents] = useState([]);
   
   useEffect(() => {
@@ -42,6 +45,19 @@ export default function Home() {
         setEvents(response.data);
       });
   }, [subscriptionEventId]);
+
+  async function handleFilterById() {
+    try {
+      const response = await api.get(`events/${eventId}`);
+      if (response.data.creator_id) {
+        setEvents([response.data]);
+      } else {
+        setEvents(response.data);
+      }
+    } catch(err) {
+      toast.error("Desculpe, ocorreu um erro ao tentar filtrar um evento. Tente novamente!");
+    }
+  }
 
   async function handleSubscription() {
     
@@ -53,7 +69,7 @@ export default function Home() {
       });
 
       setEvents(events.filter(event => event.id !== subscriptionEventId));
-      toast.success("Você se inscreveu no evento, vá no menu: \"Minhas inscrições\" para mais detalhes");
+      toast("Você se inscreveu no evento, vá no menu: \"Minhas inscrições\" para mais detalhes");
     } catch (err) {
       toast.error("Desculpe, ocorreu um erro ao tentar se inscrever no evento. Tente novamente!");
     }
@@ -61,9 +77,9 @@ export default function Home() {
 
   function isPrivate(isPrivate) {
     if (isPrivate) {
-      return <FiLock size={19} color="#47B2B0"></FiLock>;
+      return <LockOutlined style={{ color: '#47B2B0' }}></LockOutlined>;
     } else {
-      return <FiUnlock size={19} color="#47B2B0"></FiUnlock>
+      return <LockOpenOutlined style={{ color: '#47B2B0' }}></LockOpenOutlined>
     }
   }
 
@@ -99,14 +115,34 @@ export default function Home() {
     }
   }
 
+  let style = {
+    color: '#FFF',
+    backgroundColor: '#269997',
+    marginLeft: '20px',
+    marginBottom: '20px',
+  };
+
+  function profileAvatar(creator) {
+    if (creator.avatar) {
+      return <Avatar style={ style } src={creator.avatar.url}></Avatar>;
+    } else {
+      return <Avatar style={ style }>{creator.name.charAt(0)}</Avatar>;
+    }
+  }
+
   return (
     <>
     <Sidebar></Sidebar>
 
     <div className="content-home">
       <div className="search-box">
-        <input type="text" placeholder="Insira um ID" className="search-input"/>
-        <FiSearch size={20} className="search-icon"/>
+        <input
+          type="text"
+          placeholder="Insira um ID"
+          className="search-input"
+          onChange={e => setEventId(e.target.value)}
+        />
+        <button onClick={handleFilterById}><FiSearch size={20} className="search-icon"/></button>
       </div>
 
       <div className="event">
@@ -122,7 +158,12 @@ export default function Home() {
                     { isPrivate(event.private_event) }
                   </div>
                 </div>
-
+                
+                <div className="card-creator">
+                  { profileAvatar(event.creator) }
+                  <p>{event.creator.name}</p>
+                </div>
+                                
                 <div className="card-text">
                 <p style={{ fontSize: "16px" }}>
                   { event.description }
@@ -133,11 +174,9 @@ export default function Home() {
                   Local: { event.location }
                 </p>
                 <br/>
-                <br/>
-
                 <div className="flex-text">
                   <p style={{ fontSize: "14px" }}>
-                    Data: { moment(event.date).format("DD/MM/YYYY [às] h:mm") }
+                    Data: { moment(event.date).format("DD/MM/YYYY [às] H:mm") }
                   </p>
                   <p style={{ fontSize: "14px" }}>
                     Expira em: { moment(event.date_limit).format("DD/MM/YYYY")}
@@ -150,17 +189,19 @@ export default function Home() {
                     <FiUsers size={19} color="#47B2B0"></FiUsers>
                     <span>{ event.subscribers }/{ event.max_users }</span>
                   </div>
-                <button
-                  onClick={() => {
-                    setSubscriptionEventId(event.id);
-                    if (event.private_event) {
-                      handleClickOpenPasswordForm();
-                      setPrivateDialog(true);
-                    } else {
-                      handleClickOpen();
-                    }
-                  }}
-                  type="submit">PARTICIPAR</button>
+                  <button
+                    onClick={() => {
+                      setSubscriptionEventId(event.id);
+                      if (event.private_event) {
+                        handleClickOpenPasswordForm();
+                        setPrivateDialog(true);
+                      } else {
+                        handleClickOpen();
+                      }
+                    }}
+                    type="submit">PARTICIPAR</button>
+                    
+                    <span className="event-id">#{ event.id }</span>
                 </div>
               </div>         
             </>

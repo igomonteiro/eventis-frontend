@@ -62,7 +62,7 @@ export default function EditEvent({ match }) {
         date_limit: dateLimit,
       });
 
-      toast.success('Evento editado com sucesso!');
+      toast('Evento editado com sucesso!');
       history.push('/event/myEvents');
     } catch(error) {
       toast.error('Falha ao editar, verifique os dados do evento');
@@ -83,6 +83,8 @@ export default function EditEvent({ match }) {
             placeholder="Título do evento"
             value={title}
             onChange={ e => setTitle(e.target.value) }
+            minLength="4"
+            maxLength="25"
             required
           />
 
@@ -91,6 +93,8 @@ export default function EditEvent({ match }) {
             placeholder="Endereço"
             value={location}
             onChange={ e => setLocation(e.target.value) }
+            minLength="10"
+            maxLength="55"
             required
           />    
 
@@ -130,8 +134,8 @@ export default function EditEvent({ match }) {
             name="description"
             placeholder="Insira uma descrição"
             value={description}
-            maxLength="225"
             onChange={ e => setDescription(e.target.value) }
+            maxLength="225"
           />
 
           <input
@@ -141,6 +145,8 @@ export default function EditEvent({ match }) {
             placeholder="Senha para o evento"
             value={password}
             onChange={ e => { if(showPassword) { setPassword(e.target.value) } else { setPassword('') } } }
+            minLength="6"
+            maxLength="24"
             required={showPassword}
           />
 

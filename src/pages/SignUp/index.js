@@ -37,6 +37,8 @@ export default function SignUp() {
               placeholder="Seu nome"
               value={name}
               onChange={ e => setName(e.target.value) }
+              minLength="6"
+              maxLength="46"
             />
 
             <input
@@ -53,6 +55,8 @@ export default function SignUp() {
               placeholder="Sua senha"
               value={password}
               onChange={ e => setPassword(e.target.value) }
+              minLength="6"
+              maxLength="24"
             />
 
             <input
@@ -61,6 +65,8 @@ export default function SignUp() {
               placeholder="Confirme sua senha"
               value={confirmPassword}
               onChange={ e => setConfirmPassword(e.target.value) }
+              minLength="6"
+              maxLength="24"
             />
 
             <button type="submit">CRIAR CONTA</button>

@@ -22,17 +22,21 @@
   padding-left: 10px;
   padding-top: 10px;
   background: #FFFFFF;
+  transition: all 0.3s ease-in-out;
+}
+
+.card-event-myevents:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .card-title-myevents {
   display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
 }
 
-.title-myevents {
-  flex: 1;
-  text-align: center;
-  margin-left: 40px;
+.card-title-myevents h3 {
+  justify-self: center;
   color: var(--color-main-text);
 }
 
@@ -47,7 +51,6 @@
 }
 
 .max-users-edited {
-  margin-left: auto;
   margin-right: 25px;
   margin-top: 3px;
 }

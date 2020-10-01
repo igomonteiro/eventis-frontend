@@ -103,9 +103,34 @@ form a:hover {
   margin-left: 10px;
 }
 
-.avatar-container img {
+.avatar-container div {
   border-radius: 50%;
-  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.50);
+  transition: all 0.3s ease-in-out;
+}
+
+.avatar-container div:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.avatar-container a:link {
+  text-decoration: none;
+}
+
+.avatar-container a:visited  {
+  text-decoration: none;
+}
+
+.avatar-container a:hover {
+  text-decoration: none;
+}
+
+.avatar-container a:active {
+  text-decoration: none;
+}
+
+/* Fade in the pseudo-element with the bigger shadow */
+.avatar-container img:hover::after {
+  opacity: 1;
 }
 
 .sidebar-menu hr {

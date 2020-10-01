@@ -1,7 +1,7 @@
 .notification-content {
   position: relative;
   margin-top: 20px;
-  margin-right: 10px;
+  margin-right: 13px;
 }
 
 .notification-content svg {
@@ -15,20 +15,28 @@
   left: calc(50% - 130px);
   top: calc(50% + 30px);
   background: #FFF;
-  border-radius: 4px;
+  border-radius: 15px;
   padding: 15px 5px;
 }
 
 .notification-list::before {
   content: '';
   position: absolute;
-  left: calc(50% - 5px);
+  left: calc(50% - 2px);
   top: -20px;
   width: 0;
   height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
+  border-left: 2px solid transparent;
+  border-right: 2px solid transparent;
   border-bottom: 20px solid #FFF;
+}
+
+.notification {
+  transition: all 0.2s ease-in-out;
+}
+
+.notification:hover {
+  transform: scale(1.05, 1.05);
 }
 
 .notification + div {
@@ -54,6 +62,7 @@
   background-color: #C2F2F1;
   padding: 0 5px;
   margin: 0 5px;
+  color: var(--color-main-text);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   transition: filter 0.5s;
 }

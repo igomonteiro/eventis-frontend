@@ -42,7 +42,7 @@ export default function MySubscriptions() {
         subscriptions.map(sub => sub.id === subId ? { ...sub, canceled_at: new Date() } : sub )
       )
 
-      toast.success('Você cancelou sua participação com sucesso.')
+      toast('Você cancelou sua participação com sucesso.')
     } catch(err) {
       toast.error('Falha ao cancelar participação em evento, tente novamente');
     }
@@ -93,7 +93,7 @@ export default function MySubscriptions() {
 
                 <div className="flex-text-created">
                   <p style={{ fontSize: "14px" }}>
-                    Data: { moment(subs.evento.date).format("DD/MM/YYYY [às] h:mm") }
+                    Data: { moment(subs.evento.date).format("DD/MM/YYYY [às] H:mm") }
                   </p>
                 </div>
                 </div>
