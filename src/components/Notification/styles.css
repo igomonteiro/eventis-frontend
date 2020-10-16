@@ -4,9 +4,9 @@
   margin-right: 13px;
 }
 
-.notification-content svg {
-  cursor: pointer;
-  color: #4D4D4D;
+.notification-content svg:hover {
+  filter: brightness(150%);
+  transition: filter 0.5s;
 }
 
 .notification-list {

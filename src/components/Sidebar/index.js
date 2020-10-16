@@ -23,11 +23,7 @@ export default function Sidebar() {
   const profile = useSelector(state => state.user.profile);
 
   function profileAvatar() {
-    if (profile.avatar) {
-      return <Link to="/profile"><Avatar style={ style } src={profile.avatar.url}></Avatar></Link>;
-    } else {
-      return <Link to="/profile"><Avatar style={ style }>{profile.name.charAt(0)}</Avatar></Link>;
-    }
+    return <Link to="/profile"><Avatar style={ style } src={profile && profile.avatar ? profile.avatar.url : ''}>{ profile.name.charAt(0) }</Avatar></Link>;
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Avatar from '@material-ui/core/Avatar';
 import { useField } from '@rocketseat/unform';
@@ -8,8 +8,7 @@ import api from '../../../services/api';
 import './styles.css';
 
 export default function AvatarInput() {
-
-  const profile = useSelector(state => state.user.profile);
+  const profile = useSelector((state) => state.user.profile);
 
   const { defaultValue, registerField } = useField('avatar');
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
@@ -17,13 +16,13 @@ export default function AvatarInput() {
 
   const ref = useRef();
 
-  let style = {
+  const style = {
     color: '#269997',
     backgroundColor: '#FFF',
     fontSize: '120px',
     marginTop: '10px',
     width: '300px',
-    height: '300px'
+    height: '300px',
   };
 
   useEffect(() => {
@@ -50,11 +49,10 @@ export default function AvatarInput() {
   }
 
   function profileAvatar() {
-    if (preview) { 
-      return <Avatar style={ style } src={ preview }></Avatar>;
-    } else {
-      return <Avatar style={ style }>{profile.name.charAt(0)}</Avatar>;
+    if (preview) {
+      return <Avatar style={style} src={preview} />;
     }
+    return <Avatar style={style}>{profile.name.charAt(0)}</Avatar>;
   }
 
   return (

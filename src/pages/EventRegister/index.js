@@ -107,6 +107,7 @@ export default function EventRegister() {
             min="1"
             placeholder="Máximo de participantes"
             value={maxUsers}
+            onKeyDown={ (evt) => (evt.key === 'e' || evt.key === '.') && evt.preventDefault() }
             onChange={ e => setMaxUsers(e.target.value) }
             required
           />
@@ -129,6 +130,8 @@ export default function EventRegister() {
             value={password}
             onChange={ e => { if(showPassword) { setPassword(e.target.value) } else { setPassword('') } } }
             required={showPassword}
+            minLength="6"
+            maxLength="24"
           />
 
           <div className="checkbox-private">

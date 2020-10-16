@@ -2,11 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import Scrollbar from 'react-perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import { Email } from '@material-ui/icons';
-import { makeStyles  } from '@material-ui/core/styles';
-
 import Badge from '@material-ui/core/Badge';
-
+import { Email } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
 import api from '../../services/api';
 
 import './styles.css';
@@ -23,7 +21,7 @@ export default function Sidebar() {
 
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
-  
+
   const hasUnread = useMemo(
     () => notifications.filter(notification => notification.read === false).length,
     [notifications]
@@ -34,6 +32,12 @@ export default function Sidebar() {
       const response = await api.get('notifications');
       setNotifications(response.data);
     }
+
+    async function setUpcomingNotifications() {
+      await api.get('notifications/upcoming');
+    }
+
+    setUpcomingNotifications();
     loadNotifications();
   }, []);
 
