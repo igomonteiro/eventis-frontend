@@ -2,6 +2,10 @@
 
 Esse é o repositório do projeto Eventis, que é feito com Reactjs.
 
+Primeiro projeto completo que eu fiz utilizando essa stack.
+
+Foi desenvolvido como projeto para a disciplina de Eng. de Software da UTFPR.
+
 O código da API em Nodejs está disponível em: https://github.com/igomonteiro/eventis-backend.
 
 Algumas tecnologias e conceitos utilizados: Redux, autenticação completa utilizando JWT, notificações (mas não em tempo real).
